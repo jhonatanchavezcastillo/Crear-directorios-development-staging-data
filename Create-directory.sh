@@ -28,6 +28,8 @@ echo
 
 # Crear directorios
 sudo mkdir -p "$BASE_PATH/development"
+sudo mkdir -p "$BASE_PATH/development/client"
+sudo mkdir -p "$BASE_PATH/development/api"
 sudo mkdir -p "$BASE_PATH/staging"
 sudo mkdir -p "$BASE_PATH/data/postgres"
 sudo mkdir -p "$BASE_PATH/data/redis"
