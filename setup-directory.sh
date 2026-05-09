@@ -27,6 +27,11 @@ fi
 # Ruta base
 BASE_PATH="/srv/$PROJECT_NAME"
 
+if [ -e "$BASE_PATH" ]; then
+    echo " Ya existe una ruta para este proyecto: $BASE_PATH"
+    exit 1
+fi
+
 echo
 echo "Creando estructura en: $BASE_PATH"
 echo
