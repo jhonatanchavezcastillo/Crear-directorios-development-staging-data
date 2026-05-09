@@ -19,6 +19,11 @@ if [ -z "$PROJECT_NAME" ]; then
     exit 1
 fi
 
+if [[ ! "$PROJECT_NAME" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+    echo " El nombre del proyecto solo puede contener letras, números, guiones y guiones bajos."
+    exit 1
+fi
+
 # Ruta base
 BASE_PATH="/srv/$PROJECT_NAME"
 
@@ -39,7 +44,12 @@ sudo chown -R "$(id -un):$(id -gn)" "$BASE_PATH"
 echo " Estructura creada correctamente:"
 echo
 
-tree "$BASE_PATH" 2>/dev/null || find "$BASE_PATH"
+if command -v tree >/dev/null 2>&1; then
+    tree "$BASE_PATH"
+else
+    echo "(Comando 'tree' no disponible, mostrando estructura con 'find')"
+    find "$BASE_PATH"
+fi
 
 echo
 echo " Proceso finalizado."
